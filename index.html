@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6d4c41">
+<link rel="manifest" href="manifest.json">
+<title>قصر الكلاسيك – مساعد المبيعات</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f7f3f0;color:#332a27;font-family:Arial,sans-serif}
+header{background:#6d4c41;color:#fff;padding:18px 14px;text-align:center;position:sticky;top:0;z-index:5}
+h1{margin:0;font-size:23px}.sub{margin-top:5px;font-size:13px;opacity:.9}
+main{max-width:700px;margin:auto;padding:14px}.search{width:100%;padding:15px;border:1px solid #ddd;border-radius:12px;font-size:17px;background:white}
+.toolbar{display:flex;gap:8px;margin:10px 0}.btn{border:0;border-radius:10px;padding:13px 12px;font-size:15px;cursor:pointer;flex:1;background:#6d4c41;color:white}
+.btn.secondary{background:#e7ded8;color:#332a27}.btn.danger{background:#a33d32}
+.card{background:white;border-radius:15px;padding:15px;margin:10px 0;box-shadow:0 2px 9px #00000012}
+.code{font-weight:bold;font-size:16px}.name{font-size:19px;font-weight:bold;margin:5px 0 12px}
+.info{line-height:1.9;font-size:16px}.discount{font-weight:bold}.sale{color:#6d4c41;font-weight:bold}
+.actions{display:flex;gap:8px;margin-top:10px}.actions button{flex:1}
+.empty{text-align:center;padding:35px;color:#777}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:15px;z-index:10}
+.box{background:white;border-radius:16px;padding:18px;width:100%;max-width:500px}.box h2{margin-top:0}
+input{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:9px;font-size:16px}
+.row{display:flex;gap:8px;margin-top:8px}.row button{flex:1}
+.note{text-align:center;font-size:12px;color:#777;padding:12px}
+</style>
+</head>
+<body>
+<header><h1>قصر الكلاسيك</h1><div class="sub">مساعد المبيعات • يعمل بدون إنترنت</div></header>
+<main>
+<input id="search" class="search" placeholder="ابحث برقم المنتج أو الاسم">
+<div class="toolbar"><button class="btn" onclick="openAdd()">＋ إضافة منتج</button><button class="btn secondary" onclick="clearSearch()">مسح البحث</button></div>
+<div id="list"></div>
+<div class="note">البيانات محفوظة على هاتفك</div>
+</main>
+
+<div id="modal" class="modal">
+<div class="box">
+<h2 id="modalTitle">إضافة منتج</h2>
+<input id="fcode" placeholder="رقم المنتج مثل SFD40051">
+<input id="fname" placeholder="اسم المنتج">
+<input id="fprice" type="number" step="0.01" placeholder="السعر بالريال">
+<input id="fdiscount" type="number" step="0.01" placeholder="الخصم %">
+<input id="fqty" type="number" step="1" placeholder="الكمية">
+<div class="row"><button class="btn secondary" onclick="closeModal()">إلغاء</button><button class="btn" onclick="saveForm()">حفظ</button></div>
+<button id="deleteBtn" class="btn danger" style="display:none;width:100%;margin-top:8px" onclick="deleteCurrent()">حذف المنتج</button>
+</div>
+</div>
+
+<script>
+const KEY="qasr_classic_products_v1";
+let products=[], editing=null;
+function seed(){products=[
+{code:"SFD40051",name:"طقم سفرة طعام مع 10 كراسي",price:3802,discount:5,qty:0},
+{code:"SFF40459",name:"بوفيه خشب 4 باب",price:555,discount:20,qty:0},
+{code:"SFF40119",name:"بوفيه خشب 4 باب ماليزي",price:797,discount:0,qty:0},
+{code:"SFC11571",name:"طقم طاولات الكتب 1+6",price:528,discount:5,qty:0}];save();}
+function load(){try{products=JSON.parse(localStorage.getItem(KEY)||"null")||[];if(!products.length)seed()}catch(e){seed()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(products))}
+function money(n){return Number(n).toLocaleString("ar-SA",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase(), list=document.getElementById("list");
+ const arr=products.filter(p=>!q||p.code.toLowerCase().includes(q)||p.name.toLowerCase().includes(q));
+ if(!arr.length){list.innerHTML='<div class="empty">لا توجد نتائج</div>';return}
+ list.innerHTML=arr.map((p,i)=>{
+   const final=p.price*(1-p.discount/100), sale20=p.discount>=20;
+   return `<div class="card"><div class="code">${esc(p.code)}</div><div class="name">${esc(p.name)}</div>
+   <div class="info">السعر: <b>${money(p.price)} ريال</b><br>الخصم: <span class="discount">${p.discount}%</span>${sale20?' • ✓ خصم 20% أو أكثر':''}<br>
+   السعر بعد الخصم: <span class="sale">${money(final)} ريال</span><br>الكمية المتبقية: <b>${p.qty}</b></div>
+   <div class="actions"><button class="btn" onclick="sell('${p.code}')">بيع قطعة</button><button class="btn secondary" onclick="edit('${p.code}')">تعديل</button></div></div>`
+ }).join("");
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function clearSearch(){document.getElementById("search").value="";render()}
+function openAdd(){editing=null;document.getElementById("modalTitle").textContent="إضافة منتج";document.getElementById("deleteBtn").style.display="none";["fcode","fname","fprice","fdiscount","fqty"].forEach(id=>document.getElementById(id).value="");document.getElementById("modal").style.display="flex"}
+function edit(code){let p=products.find(x=>x.code===code);if(!p)return;editing=code;document.getElementById("modalTitle").textContent="تعديل "+code;document.getElementById("deleteBtn").style.display="block";
+document.getElementById("fcode").value=p.code;document.getElementById("fcode").disabled=true;document.getElementById("fname").value=p.name;document.getElementById("fprice").value=p.price;document.getElementById("fdiscount").value=p.discount;document.getElementById("fqty").value=p.qty;document.getElementById("modal").style.display="flex"}
+function closeModal(){document.getElementById("modal").style.display="none";document.getElementById("fcode").disabled=false}
+function saveForm(){let code=document.getElementById("fcode").value.trim().toUpperCase(),name=document.getElementById("fname").value.trim(),price=+document.getElementById("fprice").value,discount=+document.getElementById("fdiscount").value,qty=parseInt(document.getElementById("fqty").value,10);
+if(!code||!name||!Number.isFinite(price)||!Number.isFinite(discount)||!Number.isInteger(qty)||price<0||discount<0||qty<0){alert("يرجى إدخال البيانات بشكل صحيح");return}
+if(editing){let p=products.find(x=>x.code===editing);Object.assign(p,{name,price,discount,qty})}
+else{if(products.some(x=>x.code===code)){alert("رقم المنتج موجود بالفعل");return}products.push({code,name,price,discount,qty})}
+save();closeModal();render()}
+function sell(code){let p=products.find(x=>x.code===code);if(!p)return;if(p.qty<=0){alert("المخزون صفر. أضف الكمية أولاً.");return}p.qty--;save();render()}
+function deleteCurrent(){if(!editing)return;if(confirm("هل تريد حذف هذا المنتج؟")){products=products.filter(x=>x.code!==editing);save();closeModal();render()}}
+document.getElementById("search").addEventListener("input",render);load();render();
+if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+</body>
+</html>
