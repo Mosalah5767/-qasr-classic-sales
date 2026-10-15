@@ -1,11 +1,11 @@
 {
-  "name":"قصر الكلاسيك – مساعد المبيعات",
-  "short_name":"قصر الكلاسيك",
-  "start_url":"./index.html",
-  "display":"standalone",
-  "background_color":"#f7f3f0",
-  "theme_color":"#6d4c41",
-  "dir":"rtl",
-  "lang":"ar",
-  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "name": "قصر الكلاسيك - مساعد المبيعات",
+  "short_name": "مساعد المبيعات",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f1eb",
+  "theme_color": "#171717",
+  "description": "مساعد مبيعات للأثاث يعمل دون اتصال بعد التثبيت"
 }

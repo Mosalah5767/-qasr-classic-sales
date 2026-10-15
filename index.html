@@ -1,89 +1,79 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6d4c41">
-<link rel="manifest" href="manifest.json">
-<title>قصر الكلاسيك – مساعد المبيعات</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171717"><meta name="description" content="مساعد مبيعات قصر الكلاسيك للأثاث الراقي">
+<link rel="manifest" href="manifest.json"><title>قصر الكلاسيك | مساعد المبيعات</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f7f3f0;color:#332a27;font-family:Arial,sans-serif}
-header{background:#6d4c41;color:#fff;padding:18px 14px;text-align:center;position:sticky;top:0;z-index:5}
-h1{margin:0;font-size:23px}.sub{margin-top:5px;font-size:13px;opacity:.9}
-main{max-width:700px;margin:auto;padding:14px}.search{width:100%;padding:15px;border:1px solid #ddd;border-radius:12px;font-size:17px;background:white}
-.toolbar{display:flex;gap:8px;margin:10px 0}.btn{border:0;border-radius:10px;padding:13px 12px;font-size:15px;cursor:pointer;flex:1;background:#6d4c41;color:white}
-.btn.secondary{background:#e7ded8;color:#332a27}.btn.danger{background:#a33d32}
-.card{background:white;border-radius:15px;padding:15px;margin:10px 0;box-shadow:0 2px 9px #00000012}
-.code{font-weight:bold;font-size:16px}.name{font-size:19px;font-weight:bold;margin:5px 0 12px}
-.info{line-height:1.9;font-size:16px}.discount{font-weight:bold}.sale{color:#6d4c41;font-weight:bold}
-.actions{display:flex;gap:8px;margin-top:10px}.actions button{flex:1}
-.empty{text-align:center;padding:35px;color:#777}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:15px;z-index:10}
-.box{background:white;border-radius:16px;padding:18px;width:100%;max-width:500px}.box h2{margin-top:0}
-input{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:9px;font-size:16px}
-.row{display:flex;gap:8px;margin-top:8px}.row button{flex:1}
-.note{text-align:center;font-size:12px;color:#777;padding:12px}
-</style>
-</head>
+:root{--bg:#f4f1eb;--panel:#fff;--ink:#20201e;--muted:#77736b;--gold:#b58b42;--line:#e8e1d5;--dark:#171717;--danger:#a83232;--ok:#24734b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+header{background:linear-gradient(120deg,#151515,#34302a);color:white;padding:22px max(18px,calc((100% - 1080px)/2));border-bottom:3px solid var(--gold)}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:25px;border-radius:12px}.brand h1{font-size:21px;margin:0}.brand p{margin:4px 0 0;color:#d8c9a8;font-size:12px}
+main{max-width:1080px;margin:auto;padding:20px 16px 45px}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.eyebrow{color:var(--gold);font-weight:800;font-size:12px}.topline h2{margin:4px 0;font-size:23px}.pill{border:1px solid #d8c69f;border-radius:999px;padding:8px 12px;font-size:12px;color:#745723;background:#fffaf0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 20px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:22px;margin-top:5px}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card h3{margin:0 0 14px;font-size:17px}.field{margin-bottom:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #dcd5c9;border-radius:10px;background:#fff;color:var(--ink);font:inherit;outline:none}input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px #b58b4220}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btns{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:10px;padding:11px 14px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--dark);color:#fff}.gold{background:var(--gold);color:#171717}.light{background:#f2eee6;color:#39352e;border:1px solid var(--line)}.danger{background:#fff0f0;color:var(--danger);border:1px solid #f0d1d1}
+.result{background:#1c1c1a;color:#fff;border-radius:14px;padding:16px;margin-top:14px}.result .muted{color:#c4bcae;font-size:12px}.price{font-size:30px;font-weight:850;color:#e3c17c;margin:5px 0}.strike{text-decoration:line-through;color:#b5afa5;font-size:14px}.notice{display:none;padding:10px 12px;border-radius:10px;margin-top:10px;font-size:13px}.notice.show{display:block}.notice.warn{background:#fff0e4;color:#934b10}.notice.ok{background:#e8f6ed;color:#1c6a3e}
+.searchbar{display:flex;gap:8px;margin-bottom:12px}.searchbar input{flex:1}.micbtn{min-width:48px}.micbtn.listening{background:#a83232;color:#fff;border-color:#a83232}.voicehint{font-size:11px;color:var(--muted);margin:-4px 0 10px}.products{display:grid;gap:9px;max-height:370px;overflow:auto}.product{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff}.productmain{display:flex;align-items:center;gap:10px;min-width:0}.thumb{width:64px;height:64px;object-fit:cover;border-radius:9px;border:1px solid var(--line);background:#f4f1eb;flex-shrink:0}.photopreview{width:100px;height:100px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#f4f1eb}.photoactions{display:flex;gap:8px;flex-wrap:wrap}.filebtn{display:inline-block;background:#f2eee6;color:#39352e;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:700;font-size:13px;cursor:pointer}.product b{display:block}.product small{color:var(--muted)}.product .pprice{text-align:left;font-weight:800;white-space:nowrap}.stock{font-size:11px;border-radius:999px;padding:4px 8px;display:inline-block;margin-top:5px}.in{background:#e7f5eb;color:#22683e}.out{background:#ffeded;color:#a83232}.empty{color:var(--muted);padding:22px;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:right;padding:10px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}.tablewrap{overflow:auto}.foot{color:var(--muted);text-align:center;font-size:11px;padding:20px 0 0}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:18px}.topline h2{font-size:20px}.brand h1{font-size:18px}}
+</style></head>
 <body>
-<header><h1>قصر الكلاسيك</h1><div class="sub">مساعد المبيعات • يعمل بدون إنترنت</div></header>
+<header><div class="brand"><div class="logo">ق</div><div><h1>قصر الكلاسيك للأثاث الراقي</h1><p>مساعد المبيعات · إصدار تجريبي مطوّر</p></div></div></header>
 <main>
-<input id="search" class="search" placeholder="ابحث برقم المنتج أو الاسم">
-<div class="toolbar"><button class="btn" onclick="openAdd()">＋ إضافة منتج</button><button class="btn secondary" onclick="clearSearch()">مسح البحث</button></div>
-<div id="list"></div>
-<div class="note">البيانات محفوظة على هاتفك</div>
+<div class="topline"><div><div class="eyebrow">SALES ASSISTANT</div><h2>أهلًا بك، جاهز لخدمة العميل؟</h2><div style="color:var(--muted);font-size:13px">ابحث عن القطعة، احسب الخصم، وتابع المخزون من مكان واحد.</div></div><span class="pill">● يعمل محليًا على هذا الجهاز</span></div>
+<div class="stats">
+<div class="stat"><small>عدد المنتجات</small><strong id="count">0</strong></div><div class="stat"><small>المتوفر بالمخزون</small><strong id="available">0</strong></div><div class="stat"><small>خصم يحتاج انتباهًا</small><strong id="alerts">0</strong></div>
+</div>
+<div class="layout">
+<section class="card"><h3>حاسبة السعر والخصم</h3>
+<div class="field"><label for="code">كود القطعة أو اسمها</label><input id="code" placeholder="مثال: SFD40051" autocomplete="off"></div>
+<div class="row"><div class="field"><label for="original">السعر الأصلي (ر.س)</label><input id="original" type="number" min="0" placeholder="0"></div><div class="field"><label for="discount">نسبة الخصم (%)</label><input id="discount" type="number" min="0" max="100" value="0"></div></div>
+<div class="row"><div class="field"><label for="qty">الكمية</label><input id="qty" type="number" min="1" value="1"></div><div class="field"><label for="stock">حالة المخزون</label><select id="stock"><option value="in">متوفر</option><option value="out">غير متوفر</option></select></div></div>
+<div class="field"><label>صورة المنتج (اختياري)</label><div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><img id="photoPreview" class="photopreview" alt="معاينة صورة المنتج" hidden><div class="photoactions"><label class="filebtn" for="photoGallery">🖼️ اختيار من المعرض</label><input id="photoGallery" type="file" accept="image/*" hidden><label class="filebtn" for="photoCamera">📷 التصوير بالكاميرا</label><input id="photoCamera" type="file" accept="image/*" capture="environment" hidden><button type="button" class="btn light" id="removePhoto">إزالة الصورة</button></div></div><small style="display:block;color:var(--muted);margin-top:6px">تُضغط الصورة تلقائيًا لتقليل حجمها وتُحفظ مع المنتج على هذا الجهاز.</small></div>
+<div class="btns"><button class="btn primary" id="calc">احسب السعر</button><button class="btn gold" id="save">حفظ المنتج</button><button class="btn light" id="clear">مسح الحقول</button></div>
+<div class="result"><div class="muted">السعر النهائي للقطعة</div><div class="price" id="final">0.00 ر.س</div><div class="strike" id="oldprice">السعر قبل الخصم: 0.00 ر.س</div><div class="muted" id="saving">قيمة التوفير: 0.00 ر.س</div><div class="muted" id="total">إجمالي الكمية: 0.00 ر.س</div></div>
+<div id="notice" class="notice"></div></section>
+<section class="card"><h3>دليل المنتجات</h3><div class="searchbar"><input id="search" placeholder="ابحث بالكود أو الاسم أو الفئة" autocomplete="off"><button class="btn gold micbtn" id="voiceSearch" aria-label="البحث الصوتي" title="ابدأ البحث الصوتي">🎙️</button><button class="btn light" id="export">تصدير CSV</button></div><p class="voicehint" id="voiceStatus">اضغط 🎙️ وقل اسم المنتج أو كوده. التعرّف الصوتي قد يحتاج اتصالًا بالإنترنت حسب المتصفح.</p><div class="products" id="products"></div>
+<div class="btns" style="margin-top:12px"><button class="btn light" id="sample">إضافة بيانات تجريبية</button><button class="btn danger" id="reset">حذف جميع المنتجات</button></div>
+<p style="font-size:11px;color:var(--muted);line-height:1.7">تُحفظ المنتجات على هذا المتصفح. استخدم «تصدير CSV» للاحتفاظ بنسخة من بياناتك. لا تدخل بيانات عملاء حساسة.</p></section>
+</div>
+<section class="card" style="margin-top:16px"><h3>تصنيفات الأكواد</h3><div class="tablewrap"><table><thead><tr><th>الكود</th><th>الفئة</th><th>مثال</th></tr></thead><tbody><tr><td>SFD</td><td>طاولات</td><td>SFD40051</td></tr><tr><td>SFI</td><td>كراسي</td><td>SFI10012</td></tr><tr><td>SFF</td><td>بوفيهات</td><td>SFF20018</td></tr><tr><td>SFH</td><td>خزائن أحذية</td><td>SFH30007</td></tr><tr><td>SFX</td><td>مداخل وكونسول</td><td>SFX10005</td></tr><tr><td>SFS / SFC</td><td>طاولات خدمة</td><td>SFS10004</td></tr><tr><td>SFA / SFV / SFP / SFO / SFN</td><td>مرايا، شاشات، لوحات، أشجار ديكور، جلسات</td><td>حسب كتالوج المتجر</td></tr></tbody></table></div></section>
+<div class="foot">قصر الكلاسيك للأثاث الراقي · نموذج تطوير أولي — راجع الأسعار والمخزون مع بيانات المعرض الفعلية.</div>
 </main>
-
-<div id="modal" class="modal">
-<div class="box">
-<h2 id="modalTitle">إضافة منتج</h2>
-<input id="fcode" placeholder="رقم المنتج مثل SFD40051">
-<input id="fname" placeholder="اسم المنتج">
-<input id="fprice" type="number" step="0.01" placeholder="السعر بالريال">
-<input id="fdiscount" type="number" step="0.01" placeholder="الخصم %">
-<input id="fqty" type="number" step="1" placeholder="الكمية">
-<div class="row"><button class="btn secondary" onclick="closeModal()">إلغاء</button><button class="btn" onclick="saveForm()">حفظ</button></div>
-<button id="deleteBtn" class="btn danger" style="display:none;width:100%;margin-top:8px" onclick="deleteCurrent()">حذف المنتج</button>
-</div>
-</div>
-
 <script>
-const KEY="qasr_classic_products_v1";
-let products=[], editing=null;
-function seed(){products=[
-{code:"SFD40051",name:"طقم سفرة طعام مع 10 كراسي",price:3802,discount:5,qty:0},
-{code:"SFF40459",name:"بوفيه خشب 4 باب",price:555,discount:20,qty:0},
-{code:"SFF40119",name:"بوفيه خشب 4 باب ماليزي",price:797,discount:0,qty:0},
-{code:"SFC11571",name:"طقم طاولات الكتب 1+6",price:528,discount:5,qty:0}];save();}
-function load(){try{products=JSON.parse(localStorage.getItem(KEY)||"null")||[];if(!products.length)seed()}catch(e){seed()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(products))}
-function money(n){return Number(n).toLocaleString("ar-SA",{minimumFractionDigits:2,maximumFractionDigits:2})}
-function render(){
- const q=document.getElementById("search").value.trim().toLowerCase(), list=document.getElementById("list");
- const arr=products.filter(p=>!q||p.code.toLowerCase().includes(q)||p.name.toLowerCase().includes(q));
- if(!arr.length){list.innerHTML='<div class="empty">لا توجد نتائج</div>';return}
- list.innerHTML=arr.map((p,i)=>{
-   const final=p.price*(1-p.discount/100), sale20=p.discount>=20;
-   return `<div class="card"><div class="code">${esc(p.code)}</div><div class="name">${esc(p.name)}</div>
-   <div class="info">السعر: <b>${money(p.price)} ريال</b><br>الخصم: <span class="discount">${p.discount}%</span>${sale20?' • ✓ خصم 20% أو أكثر':''}<br>
-   السعر بعد الخصم: <span class="sale">${money(final)} ريال</span><br>الكمية المتبقية: <b>${p.qty}</b></div>
-   <div class="actions"><button class="btn" onclick="sell('${p.code}')">بيع قطعة</button><button class="btn secondary" onclick="edit('${p.code}')">تعديل</button></div></div>`
- }).join("");
+const KEY='qasrClassicSalesV2';
+let products=JSON.parse(localStorage.getItem(KEY)||'[]');
+let currentPhoto='';
+const $=id=>document.getElementById(id);
+const money=n=>(Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' ر.س';
+function notify(msg,type='ok'){const n=$('notice');n.textContent=msg;n.className='notice show '+type}
+function calc(){let p=Math.max(0,Number($('original').value)||0),d=Math.min(100,Math.max(0,Number($('discount').value)||0)),q=Math.max(1,Number($('qty').value)||1);let f=p*(1-d/100);$('final').textContent=money(f);$('oldprice').textContent='السعر قبل الخصم: '+money(p);$('saving').textContent='قيمة التوفير: '+money(p-f);$('total').textContent='إجمالي الكمية: '+money(f*q);if(d>=20)notify('تنبيه: الخصم '+d+'% — تأكد من صلاحية اعتماد الخصم قبل إتمام البيع.','warn');else notify('تم حساب السعر بنجاح.','ok');}
+function render(){let q=$('search').value.trim().toLowerCase();let filtered=products.filter(p=>(p.code+' '+p.name+' '+p.category).toLowerCase().includes(q));$('count').textContent=products.length;$('available').textContent=products.filter(p=>p.stock==='in').length;$('alerts').textContent=products.filter(p=>Number(p.discount)>=20).length;let root=$('products');root.innerHTML='';if(!filtered.length){root.innerHTML='<div class="empty">لا توجد منتجات مطابقة. أضف منتجًا أو أدخل بيانات تجريبية.</div>';return;}filtered.forEach(p=>{let div=document.createElement('div');div.className='product';div.innerHTML=`<div class="productmain"><img class="thumb" alt="صورة المنتج"><div><b></b><small></small><div><span class="stock ${p.stock==='in'?'in':'out'}">${p.stock==='in'?'متوفر':'غير متوفر'}</span></div></div></div><div class="pprice"></div>`;let img=div.querySelector('.thumb');if(p.image){img.src=p.image;}else{img.hidden=true;}div.querySelector('b').textContent=p.code+' · '+p.name;div.querySelector('small').textContent=p.category+' · خصم '+(p.discount||0)+'%';div.querySelector('.pprice').textContent=money(p.price*(1-(p.discount||0)/100));div.addEventListener('click',()=>{ $('code').value=p.code;$('original').value=p.price;$('discount').value=p.discount||0;$('qty').value=1;$('stock').value=p.stock;currentPhoto=p.image||'';updatePhotoPreview();calc();window.scrollTo({top:0,behavior:'smooth'});});root.appendChild(div);});}
+function updatePhotoPreview(){const img=$('photoPreview');if(currentPhoto){img.src=currentPhoto;img.hidden=false;}else{img.removeAttribute('src');img.hidden=true;}}
+function processPhoto(file){if(!file)return;if(!file.type.startsWith('image/')){notify('يرجى اختيار ملف صورة صالح.','warn');return;}const reader=new FileReader();reader.onload=()=>{const source=new Image();source.onload=()=>{const max=900,scale=Math.min(1,max/Math.max(source.width,source.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(source.width*scale));canvas.height=Math.max(1,Math.round(source.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(source,0,0,canvas.width,canvas.height);currentPhoto=canvas.toDataURL('image/jpeg',0.78);updatePhotoPreview();notify('تم تجهيز الصورة. اضغط «حفظ المنتج» لربطها بالكود.');};source.onerror=()=>notify('تعذر قراءة الصورة، جرّب صورة أخرى.','warn');source.src=reader.result;};reader.onerror=()=>notify('تعذر فتح الصورة.','warn');reader.readAsDataURL(file);}
+$('photoGallery').addEventListener('change',e=>{processPhoto(e.target.files[0]);e.target.value='';});
+$('photoCamera').addEventListener('change',e=>{processPhoto(e.target.files[0]);e.target.value='';});
+$('removePhoto').onclick=()=>{currentPhoto='';updatePhotoPreview();notify('أزيلت الصورة من النموذج. احفظ المنتج لتأكيد التغيير.');};
+function save(){let code=$('code').value.trim().toUpperCase(),price=Number($('original').value),discount=Math.min(100,Math.max(0,Number($('discount').value)||0));if(!code||!Number.isFinite(price)||price<0){notify('أدخل كود القطعة وسعرًا صحيحًا أولًا.','warn');return;}let prefix=code.match(/^SF[A-Z]/);let category=prefix?({'SFD':'طاولات','SFI':'كراسي','SFF':'بوفيهات','SFH':'خزائن أحذية','SFX':'مداخل وكونسول','SFS':'طاولات خدمة','SFC':'طاولات خدمة','SFA':'مرايا','SFV':'حوامل شاشات','SFP':'لوحات','SFO':'ديكور','SFN':'جلسات'}[prefix[0]]||'أثاث'):'أثاث';let old=products.findIndex(p=>p.code===code);let existing=products.find(p=>p.code===code);let item={code,name:code,category,price,discount,stock:$('stock').value,image:currentPhoto||existing?.image||''};if(old>=0)products[old]=item;else products.unshift(item);localStorage.setItem(KEY,JSON.stringify(products));render();notify('تم حفظ المنتج على هذا الجهاز.');}
+$('calc').onclick=calc;$('save').onclick=save;$('search').oninput=render;
+// Arabic voice search: uses the browser's SpeechRecognition implementation when available.
+let recognition=null, listening=false;
+const voiceBtn=$('voiceSearch'), voiceStatus=$('voiceStatus');
+const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(SpeechRecognition){
+  recognition=new SpeechRecognition(); recognition.lang='ar-SA'; recognition.continuous=false; recognition.interimResults=true; recognition.maxAlternatives=3;
+  recognition.onstart=()=>{listening=true;voiceBtn.classList.add('listening');voiceBtn.textContent='■';voiceBtn.title='إيقاف الاستماع';voiceStatus.textContent='أستمع الآن… قل اسم القطعة أو الكود بوضوح.';};
+  recognition.onresult=(event)=>{let transcript='';for(let i=event.resultIndex;i<event.results.length;i++){transcript+=event.results[i][0].transcript;} $('search').value=transcript.trim();render();if(event.results[event.results.length-1].isFinal){voiceStatus.textContent='عبارة البحث: «'+transcript.trim()+'»';}};
+  recognition.onerror=(event)=>{voiceStatus.textContent=event.error==='not-allowed'?'يرجى السماح باستخدام الميكروفون من إعدادات المتصفح.':'تعذّر التعرّف على الكلام. جرّب مجددًا أو اكتب البحث.';};
+  recognition.onend=()=>{listening=false;voiceBtn.classList.remove('listening');voiceBtn.textContent='🎙️';voiceBtn.title='ابدأ البحث الصوتي';};
+  voiceBtn.onclick=()=>{if(listening){recognition.stop();return;}try{recognition.start();}catch(e){voiceStatus.textContent='انتظر لحظة ثم اضغط الميكروفون مرة أخرى.';}};
+}else{
+  voiceBtn.disabled=true;voiceBtn.title='التعرّف الصوتي غير مدعوم';voiceStatus.textContent='البحث الصوتي غير مدعوم في هذا المتصفح. استخدم أحدث إصدار من Chrome على Android أو اكتب البحث.';
 }
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function clearSearch(){document.getElementById("search").value="";render()}
-function openAdd(){editing=null;document.getElementById("modalTitle").textContent="إضافة منتج";document.getElementById("deleteBtn").style.display="none";["fcode","fname","fprice","fdiscount","fqty"].forEach(id=>document.getElementById(id).value="");document.getElementById("modal").style.display="flex"}
-function edit(code){let p=products.find(x=>x.code===code);if(!p)return;editing=code;document.getElementById("modalTitle").textContent="تعديل "+code;document.getElementById("deleteBtn").style.display="block";
-document.getElementById("fcode").value=p.code;document.getElementById("fcode").disabled=true;document.getElementById("fname").value=p.name;document.getElementById("fprice").value=p.price;document.getElementById("fdiscount").value=p.discount;document.getElementById("fqty").value=p.qty;document.getElementById("modal").style.display="flex"}
-function closeModal(){document.getElementById("modal").style.display="none";document.getElementById("fcode").disabled=false}
-function saveForm(){let code=document.getElementById("fcode").value.trim().toUpperCase(),name=document.getElementById("fname").value.trim(),price=+document.getElementById("fprice").value,discount=+document.getElementById("fdiscount").value,qty=parseInt(document.getElementById("fqty").value,10);
-if(!code||!name||!Number.isFinite(price)||!Number.isFinite(discount)||!Number.isInteger(qty)||price<0||discount<0||qty<0){alert("يرجى إدخال البيانات بشكل صحيح");return}
-if(editing){let p=products.find(x=>x.code===editing);Object.assign(p,{name,price,discount,qty})}
-else{if(products.some(x=>x.code===code)){alert("رقم المنتج موجود بالفعل");return}products.push({code,name,price,discount,qty})}
-save();closeModal();render()}
-function sell(code){let p=products.find(x=>x.code===code);if(!p)return;if(p.qty<=0){alert("المخزون صفر. أضف الكمية أولاً.");return}p.qty--;save();render()}
-function deleteCurrent(){if(!editing)return;if(confirm("هل تريد حذف هذا المنتج؟")){products=products.filter(x=>x.code!==editing);save();closeModal();render()}}
-document.getElementById("search").addEventListener("input",render);load();render();
-if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-</script>
-</body>
-</html>
+$('clear').onclick=()=>{['code','original'].forEach(id=>$(id).value='');$('discount').value=0;$('qty').value=1;$('stock').value='in';currentPhoto='';updatePhotoPreview();$('notice').className='notice';calc();};
+$('sample').onclick=()=>{let samples=[{code:'SFD40051',name:'طاولة خدمة كلاسيكية',category:'طاولات',price:850,discount:10,stock:'in'},{code:'SFI10012',name:'كرسي أنيق',category:'كراسي',price:420,discount:0,stock:'in'},{code:'SFF20018',name:'بوفيه كلاسيكي',category:'بوفيهات',price:1850,discount:20,stock:'in'},{code:'SFH30007',name:'خزانة أحذية',category:'خزائن أحذية',price:690,discount:5,stock:'out'}];samples.forEach(s=>{if(!products.some(p=>p.code===s.code))products.push(s)});localStorage.setItem(KEY,JSON.stringify(products));render();notify('أضيفت بيانات توضيحية فقط؛ استبدلها بالأسعار الفعلية.','ok');};
+$('reset').onclick=()=>{if(confirm('هل تريد حذف جميع المنتجات المحفوظة على هذا الجهاز؟')){products=[];localStorage.removeItem(KEY);render();notify('تم حذف المنتجات.');}};
+$('export').onclick=()=>{if(!products.length){notify('لا توجد بيانات لتصديرها.','warn');return;}let rows=[['code','name','category','price','discount','stock'],...products.map(p=>[p.code,p.name,p.category,p.price,p.discount,p.stock])];let csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));a.download='qasr-classic-products.csv';a.click();URL.revokeObjectURL(a.href);};
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+render();calc();
+</script></body></html>
