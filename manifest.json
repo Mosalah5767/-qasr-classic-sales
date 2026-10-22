@@ -1,11 +1,11 @@
 {
-  "name": "قصر الكلاسيك - مساعد المبيعات",
-  "short_name": "مساعد المبيعات",
+  "name": "M.S.F - مساعد مبيعات قصر الكلاسيك",
+  "short_name": "M.S.F Sales",
   "lang": "ar",
   "dir": "rtl",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f4f1eb",
   "theme_color": "#171717",
-  "description": "مساعد مبيعات للأثاث يعمل دون اتصال بعد التثبيت"
+  "description": "إدارة منتجات ومخزون وخصومات قصر الكلاسيك"
 }
